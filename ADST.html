@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sales Analytics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">A</span><span><small>SALES INTELLIGENCE</small></span></div>
+    <div class="side-label">WORKSPACE</div>
+    <a class="nav active" href="#overview">◫ &nbsp; Overview</a>
+    <a class="nav" href="#charts">▥ &nbsp; Sales charts</a>
+    <a class="nav" href="#analysis">⌁ &nbsp; Sales analysis</a>
+    <div class="side-bottom">● &nbsp; Local data workspace</div>
+  </aside>
+
+  <main class="main" id="overview">
+    <header class="topbar">
+      <div>Sales dashboard</div>
+      <label class="button primary upload">＋ Import CSV
+        <input type="file" id="csvFile" accept=".csv,text/csv">
+      </label>
+    </header>
+
+    <section class="intro">
+      <div>
+        <div class="eyebrow">● &nbsp; SALES PERFORMANCE</div>
+        <h1>Sales overview</h1>
+        <p>Explore revenue, profit, regions, channels, and vehicle sales.</p>
+      </div>
+      <div class="filters">
+        <select id="regionFilter"><option value="">All regions</option></select>
+        <select id="channelFilter"><option value="">All channels</option></select>
+      </div>
+    </section>
+
+    <section class="kpis">
+      <article class="kpi"><span>Total Revenue</span><strong id="revenueKpi">—</strong><small id="revenueNote">Import a CSV to begin</small></article>
+      <article class="kpi"><span>Total Profit</span><strong id="profitKpi">—</strong><small id="profitNote">Calculated from current data</small></article>
+      <article class="kpi"><span>Units Sold</span><strong id="unitsKpi">—</strong><small>Filtered records</small></article>
+      <article class="kpi"><span>Profit Margin</span><strong id="marginKpi">—</strong><small>Profit divided by revenue</small></article>
+    </section>
+
+    <section class="chart-grid" id="charts">
+      <article class="panel"><div class="panel-title"><h2>Revenue by Region</h2><span>Share of revenue</span></div><div class="chart-box"><canvas id="regionChart"></canvas></div></article>
+      <article class="panel"><div class="panel-title"><h2>Revenue by Year</h2><span>Annual trend</span></div><div class="chart-box"><canvas id="revenueYearChart"></canvas></div></article>
+      <article class="panel"><div class="panel-title"><h2>Profit by Year</h2><span>Annual trend</span></div><div class="chart-box"><canvas id="profitYearChart"></canvas></div></article>
+      <article class="panel"><div class="panel-title"><h2>Profit by Sales Channel</h2><span>Channel contribution</span></div><div class="chart-box"><canvas id="channelChart"></canvas></div></article>
+      <article class="panel"><div class="panel-title"><h2>Region by Sales Channel</h2><span>Record count</span></div><div class="chart-box"><canvas id="regionChannelChart"></canvas></div></article>
+      <article class="panel"><div class="panel-title"><h2>Vehicle Type by Sales Channel</h2><span>Units sold</span></div><div class="chart-box"><canvas id="vehicleChart"></canvas></div></article>
+    </section>
+
+    <section class="panel analysis" id="analysis">
+      <div class="analysis-heading">
+        <div><div class="eyebrow">AUTO-GENERATED INSIGHTS</div><h2>Sales Analysis</h2></div>
+        <span class="live"><i></i> Updates with your data</span>
+      </div>
+      <div id="analysisText" class="analysis-text">
+        Import your project CSV to generate a written sales summary.
+      </div>
+    </section>
+
+    <section class="panel records">
+      <div class="records-head">
+        <div><h2>Sales data</h2><p>Click a cell to edit it. Charts and analysis update automatically.</p></div>
+        <input id="search" type="search" placeholder="Search data…" disabled>
+      </div>
+      <div class="table-wrap"><table><thead id="tableHead"></thead><tbody id="tableBody"><tr><td class="empty">Import a CSV to see your sales records.</td></tr></tbody></table></div>
+      <div class="table-foot"><span id="rowCount">No data loaded</span><button id="export" class="button secondary" disabled>Export filtered CSV</button></div>
+    </section>
+
+    <footer>Dashboard runs in your browser</footer>
+  </main>
+  <script src="dashboard.js"></script>
+</body>
+</html>
